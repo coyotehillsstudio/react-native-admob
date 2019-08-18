@@ -141,7 +141,11 @@ public class RNAdMobRewardedVideoAdModule extends ReactContextBaseJavaModule imp
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                RNAdMobRewardedVideoAdModule.this.mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getCurrentActivity());
+                try {
+                    RNAdMobRewardedVideoAdModule.this.mRewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getCurrentActivity());
+                } catch (Exception ex) {
+                    return;
+                }
 
                 RNAdMobRewardedVideoAdModule.this.mRewardedVideoAd.setRewardedVideoAdListener(RNAdMobRewardedVideoAdModule.this);
 
